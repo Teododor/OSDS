@@ -1,0 +1,58 @@
+1.
+
+objdump -h executable_name : objdump -h 11 -> displays the contents of the section headers using -h option (There can be various sections in an object file. Information related to them can be printed using -h option).
+
+
+Size -> the dimensions of the section
+VMA -> Virtual Memory Address
+LMA -> Logical Memory Address
+File off -> the offset of the section from the start of the file
+Algn -> alignment
+CONTENTS
+ALLOC
+LOAD
+READONLY
+DATA -> flags (whether a section is LOADED OR READONLY etc..)
+
+Text/Code zone -> 15 .text
+
+Data Zone -> 24 .data
+
+
+Stack and Heap are runtime concepts and are not explicitly defined in the ELF file. They are managed by the operating system during program execution
+
+
+
+
+
+
+2. The meaning of each column 
+
+ADDRESS -> the adress from start and ending of the process
+PERMS (PERMISSIONS) -> access permissions (r-read
+					   w-write
+					   x-execute
+					   s-shared
+					   p-private
+					   )
+OFFSET -> if (memory not mapped from file) -> 0
+       -> if (memory (region) is mapped from file (using mmap)) -> this is the offset from file where the maps starts
+INODE -> if region was mapped from file
+
+
+ldd executable_name (ldd 11) -> allows users to view an executable file's shared object dependencies
+
+the command shows the libraries from which the program depends and the virtual memory address of these libraries
+
+we can see that the memory address is different -> every library has mapped in memory more than onde address of memory
+
+
+
+
+
+4. -- If I send a signal to a process which has more than one thread which thread will handle it?
+	A process-directed signal may be delivered to any one of the threads that does not currently have the signal blocked. If more than one of the threads has the signal unblocked, then the kernel chooses an arbitrary thread to which to deliver the signal
+   -- If a thread produces an invalid memory access, which thread will handle it? 
+   	The thread itself using SIGSEGV
+
+
